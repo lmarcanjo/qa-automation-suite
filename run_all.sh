@@ -27,7 +27,8 @@ newman run tests/api/restful-booker.json -r cli,htmlextra --reporter-htmlextra-e
 
 echo "🚀 [3/3] RODANDO K6 (PERFORMANCE)..."
 if command -v k6 &> /dev/null; then
-    k6 run tests/performance/load_test.js > evidences/k6-summary.txt --summary-export=evidences/k6-summary.json
+    K6_WEB_DASHBOARD=true K6_WEB_DASHBOARD_EXPORT=evidences/k6-report.html 
+    k6 run tests/performance/load_test_k6.js > evidences/k6-summary.txt --summary-export=evidences/k6-summary.json
 else
     echo "⚠️ K6 não instalado localmente. Pulei o teste de carga."
     echo "👉 Instale com: winget install k6 (Win) ou brew install k6 (Mac)"

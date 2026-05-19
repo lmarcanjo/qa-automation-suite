@@ -1,59 +1,122 @@
-# 🚀 QA Automation Master Suite - Enterprise Edition
+# 🚀 QA Automation Master Suite
 
-![Playwright](https://img.shields.io/badge/Playwright-Typescript-45ba4b?style=for-the-badge&logo=playwright)
-![Postman](https://img.shields.io/badge/Postman-Newman-ff6c37?style=for-the-badge&logo=postman)
-![K6](https://img.shields.io/badge/K6-Performance-7d64ff?style=for-the-badge&logo=k6)
-![GitHub Actions](https://img.shields.io/badge/CI%2FCD-GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions)
+![Playwright](https://img.shields.io/badge/Playwright-2EAD33?style=for-the-badge&logo=Playwright&logoColor=white)
+![k6](https://img.shields.io/badge/k6-7D64FF?style=for-the-badge&logo=k6&logoColor=white)
+![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)
 
-Este repositório não é apenas um conjunto de scripts, mas sim uma arquitetura completa de testes automatizados englobando **UI E2E, Testes de Integração de API e Análise de Performance**, todos orquestrados por Integração Contínua (CI/CD).
+Este repositório contém o desafio técnico de QA Automaton. A suíte foi desenvolvida com foco em **Qualidade Total**, cobrindo testes ponta a ponta (E2E), testes de contrato/integração (API) e testes de resiliência e volumetria (Performance), utilizando as melhores práticas do mercado, como Page Objects, BDD e Continuous Integration.
 
-## 📌 O que foi entregue?
-1. **Mapeamento BDD:** +40 cenários mapeados cobrindo regras de negócio, exceções e segurança.
-2. **Automação Web:** Scripts resilientes em TypeScript usando Playwright.
-3. **Automação de API:** Validação de fluxos CRUD completos usando Postman e Newman.
-4. **Testes de Carga:** Simulação de picos de tráfego na API usando K6.
-5. **CI/CD na Nuvem:** Pipeline no GitHub Actions executando a suíte a cada *Push*.
+## 🎯 Estratégia e Arquitetura
 
-## 📂 Estrutura de Diretórios
+O projeto foi desenhado para ser rápido, escalável e gerar relatórios visuais ricos. 
+
+- **UI / E2E:** `Playwright` (TypeScript). Escolhido pela velocidade, auto-wait nativo e geração de *Traces* detalhados.
+- **API:** `Postman / Newman`. Escolhido pela facilidade de manutenção de collections e geração do relatório `htmlextra`.
+- **Performance:** `Grafana k6`. Escolhido por rodar via script (JavaScript), permitindo versionamento de infraestrutura e assertividade de NFRs (Requisitos Não-Funcionais).
+- **CI/CD:** `GitHub Actions`. Configurado para rodar a suíte completa automaticamente em cada push para a branch principal.
+
+---
+
+## 📂 Estrutura do Projeto
+
 ```text
-📦 qa-automation-suite
- ┣ 📂 .github/workflows      # Pipeline de CI/CD 
- ┣ 📂 docs                   # Planos de Teste (Gherkin/BDD)
- ┣ 📂 evidences              # Relatórios Gerados Dinamicamente (.html)
- ┣ 📂 tests
- ┃ ┣ 📂 api                  # Collections (.json)
- ┃ ┣ 📂 performance          # K6 Scripts (.js)
- ┃ ┗ 📂 ui                   # Playwright Scripts (.spec.ts)
- ┣ 📜 run_all.sh             # Script Automatizado de Execução Local
- ┗ 📜 README.md              # Documentação Principal
+qa-automation-suite/
+├── docs/                     # Cenários BDD (Gherkin) detalhados (Funcionais e Não-Funcionais)
+├── evidences/                # ⚠️ Ignorado no Git. Aqui são salvos os relatórios HTML e Vídeos localmente
+├── tests/
+│   ├── api/                  # Collections e Environments do Postman
+│   ├── performance/          # Scripts do K6 (Load, Stress e Spike tests)
+│   └── ui/                   # Scripts E2E com Playwright
+│       ├── pages/            # Page Object Model (POM)
+│       └── e2e/              # Arquivos de teste (.spec.ts)
+├── .github/workflows/        # Pipeline do GitHub Actions
+├── playwright.config.ts      # Configuração global do Playwright
+├── run_all.sh                # Script bash para execução unificada gerando relatórios
+└── README.md                 # Documentação do projeto
 ```
 
-## ⚙️ Como Iniciar e Executar Localmente
+---
 
-### Pré-requisitos (Máquina Local)
-- [Node.js](https://nodejs.org/) (v16+)
-- [Grafana K6](https://k6.io/docs/get-started/installation/)
+## 🌪️ O Que Foi Testado? (Mapeamento de Riscos e BDD)
 
-### O "Super Comando" (Run All)
-Foi desenvolvido um script bash que prepara o ambiente (baixa bibliotecas) e roda todos os cenários, gerando relatórios isolados de forma autônoma. No seu terminal, na raiz do projeto, execute:
+Os cenários foram documentados utilizando Gherkin (BDD) na pasta `docs/`. Destacam-se:
 
-**Linux / Mac / Git Bash (Windows):**
+### 1. Testes de Performance (Requisitos Não Funcionais)
+O K6 foi configurado com *Thresholds* (Critérios de Aceite) rigorosos. O teste falhará automaticamente se:
+- `http_req_duration` (p95) > 500ms.
+- `http_req_failed` > 1% (Taxa de erro).
+
+**Cenários K6 implementados:**
+- **Load Test:** Ramp-up para validar a carga diária esperada.
+- **Stress Test:** Ataques pesados focados em mutações de banco (POST/PUT) para validar gargalos.
+- **Spike Test:** Picos rápidos de acessos paralelos para validar resiliência.
+
+### 2. Testes de UI & API
+- Validação de fluxos de exceção, quebra de contrato, campos obrigatórios, Rate Limiting (429) e injeção de dados inválidos (Negative Testing).
+
+---
+
+## ⚙️ Pré-requisitos e Instalação
+
+Certifique-se de ter instalado em sua máquina:
+- [Node.js](https://nodejs.org/) (v18 ou superior)
+- [K6](https://k6.io/docs/get-started/installation/)
+
+Clone o projeto e instale as dependências:
+
 ```bash
+git clone https://github.com/SEU-USUARIO/qa-automation-suite.git
+cd qa-automation-suite
+npm install
+npx playwright install --with-deps
+```
+
+---
+
+## 🚀 Como Executar os Testes (Local)
+
+Você pode rodar as camadas separadamente ou utilizar o script unificado.
+
+### Opção 1: Execução Unificada (Recomendado)
+Criei um script mágico que roda UI, API e Performance de uma só vez, e concentra **todos os relatórios e vídeos** na pasta `evidences/`.
+
+```bash
+# Dê permissão ao script (Apenas Linux/Mac/GitBash)
 chmod +x run_all.sh
+
+# Execute a suíte
 ./run_all.sh
 ```
 
-### 📊 Análise de Relatórios
-Após a execução do script `run_all.sh`, a pasta `evidences/` será populada com os resultados.
-- Abra o `api-report.html` no navegador para uma visão detalhada das requisições e falhas de contrato.
-- Os testes de UI e Performance printarão seus respectivos resumos interativos direto no console/terminal.
+### Opção 2: Comandos Individuais
+**Playwright (UI E2E):**
+```bash
+npx playwright test          # Roda em background
+npx playwright test --ui     # Abre a interface interativa do Playwright
+```
 
-## ☁️ Integração Contínua (GitHub Actions)
-A qualidade não dorme. Foi configurado um arquivo YAML em `.github/workflows/qa-pipeline.yml` que:
-1. Sobe um ambiente Ubuntu Server.
-2. Faz o setup do Node e K6.
-3. Executa as três suítes (UI, API e Perf) em jobs separados.
-4. Exporta os relatórios como *Artifacts* diretamente na interface do GitHub.
+**K6 (Performance):**
+```bash
+# Roda o teste de carga e gera um dashboard HTML na pasta evidences
+K6_WEB_DASHBOARD=true K6_WEB_DASHBOARD_EXPORT=evidences/k6-report.html k6 run tests/performance/seu_script_k6.js
+```
 
 ---
-*Desenvolvido com foco total em Qualidade e Resiliência.*
+
+## 📊 Relatórios e Evidências
+
+Por padrão, a captura de **vídeos e traces no caso de falha** está ativada no Playwright. 
+Após a execução local, abra a pasta `evidences/` e você encontrará:
+1. `playwright-report/index.html` (Gráficos e vídeos do fluxo UI).
+2. `k6-report.html` (Dashboard interativo de volumetria e picos do servidor).
+3. `api-report.html` (Dashboard gerado pelo Newman detalhando as requisições).
+
+
+## ☁️ CI / CD (Pipeline Mágica)
+Este repositório possui Integração Contínua na aba **Actions**. 
+A cada push ou Pull Request para a branch `main`, os containers instalam as dependências e rodam os testes E2E e de API garantindo que nada foi quebrado antes do deploy. Os relatórios de nuvem são salvos como **Artifacts** ao final da run.
+
+---
+**Desenvolvido por [Luã Arcanjo](https://www.linkedin.com/in/lu%C3%A3-martins-arcanjo-b34500124/)** | Engenheiro de Qualidade
