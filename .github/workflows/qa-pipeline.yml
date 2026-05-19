@@ -7,16 +7,13 @@ on:
     branches: [ "main", "master" ]
   workflow_dispatch:
 
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
 jobs:
   test-ui-playwright:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.2.0
       - uses: actions/setup-node@v4.1.0
-        with: { node-version: 18 }
+        with: { node-version: 20 }  # Updated to Node.js 20 (LTS)
       - run: npm ci
       - run: npx playwright install --with-deps chromium
       - run: npx playwright test
@@ -31,7 +28,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4.2.0
       - uses: actions/setup-node@v4.1.0
-        with: { node-version: 18 }
+        with: { node-version: 20 }  # Updated to Node.js 20
       - run: npm install -g newman newman-reporter-htmlextra
       - run: newman run tests/api/restful-booker.json -r cli,htmlextra --reporter-htmlextra-export api-report.html
       - uses: actions/upload-artifact@v4.4.0
