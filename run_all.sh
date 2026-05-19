@@ -4,7 +4,8 @@ echo "======================================================"
 echo " ⚔️ PREPARANDO MAGIA LOCAL E ATACANDO! ⚔️ "
 echo "======================================================"
 
-mkdir -p evidences
+rm -rf evidences/
+mkdir -p evidences/
 
 echo "📦 Verificando/Instalando dependências (Node/Playwright)..."
 if [ ! -d "node_modules" ]; then
@@ -26,7 +27,7 @@ newman run tests/api/restful-booker.json -r cli,htmlextra --reporter-htmlextra-e
 
 echo "🚀 [3/3] RODANDO K6 (PERFORMANCE)..."
 if command -v k6 &> /dev/null; then
-    k6 run tests/performance/load_test.js
+    k6 run tests/performance/load_test.js > evidences/k6-summary.txt --summary-export=evidences/k6-summary.json
 else
     echo "⚠️ K6 não instalado localmente. Pulei o teste de carga."
     echo "👉 Instale com: winget install k6 (Win) ou brew install k6 (Mac)"
