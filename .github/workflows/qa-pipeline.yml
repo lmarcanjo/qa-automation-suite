@@ -1,0 +1,47 @@
+name: QA Automation Master Suite
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+  workflow_dispatch:
+
+jobs:
+  test-ui-playwright:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with: { node-version: 18 }
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npx playwright test
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+
+  test-api-newman:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with: { node-version: 18 }
+      - run: npm install -g newman newman-reporter-htmlextra
+      - run: newman run tests/api/restful-booker.json -r cli,htmlextra --reporter-htmlextra-export api-report.html
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: newman-report
+          path: api-report.html
+
+  test-perf-k6:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup K6
+        uses: grafana/setup-k6-action@v1
+      - name: Run K6 Load Test
+        run: k6 run tests/performance/load_test.js

@@ -1,0 +1,25 @@
+{
+  "name": "qa-automation-suite",
+  "version": "1.0.0",
+  "description": "Bem-vindo ao repositório do Desafio de QA. Este projeto garante a qualidade do **Sauce Demo (UI)** e **Restful-Booker (API)**, cobrindo 100% dos requisitos Obrigatórios (Nível 1) e Diferenciais (Nível 2).",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@axe-core/playwright": "^4.11.3",
+    "@playwright/test": "^1.60.0",
+    "@types/node": "^25.9.0"
+  },
+  "dependencies": {
+    "axe-core": "^4.11.4",
+    "playwright": "^1.60.0",
+    "playwright-core": "^1.60.0"
+  }
+}

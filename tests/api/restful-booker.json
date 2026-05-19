@@ -1,0 +1,59 @@
+{
+	"info": {
+		"name": "Restful-Booker Extreme Suite",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "01. Auth Valido",
+			"event": [{"listen": "test","script": {"exec": ["pm.test(\"Status 200\", () => pm.response.to.have.status(200));", "pm.environment.set(\"token\", pm.response.json().token);"],"type": "text/javascript"}}],
+			"request": {"method": "POST","header": [{"key": "Content-Type","value": "application/json"}],"body": {"mode": "raw","raw": "{\"username\" : \"admin\",\"password\" : \"password123\"}"},"url": {"raw": "{{baseUrl}}/auth","host": ["{{baseUrl}}"],"path": ["auth"]}}
+		},
+		{
+			"name": "02. Auth Invalido",
+			"event": [{"listen": "test","script": {"exec": ["pm.test(\"Retorna Bad Credentials\", () => pm.expect(pm.response.text()).to.include(\"Bad credentials\"));"],"type": "text/javascript"}}],
+			"request": {"method": "POST","header": [{"key": "Content-Type","value": "application/json"}],"body": {"mode": "raw","raw": "{\"username\" : \"admin\",\"password\" : \"errado\"}"},"url": {"raw": "{{baseUrl}}/auth","host": ["{{baseUrl}}"],"path": ["auth"]}}
+		},
+		{
+			"name": "03. Create Booking",
+			"event": [{"listen": "test","script": {"exec": ["pm.test(\"Status 200\", () => pm.response.to.have.status(200));", "pm.environment.set(\"bookingid\", pm.response.json().bookingid);"],"type": "text/javascript"}}],
+			"request": {"method": "POST","header": [{"key": "Content-Type","value": "application/json"},{"key": "Accept","value": "application/json"}],"body": {"mode": "raw","raw": "{\"firstname\": \"Julius\", \"lastname\": \"Novachrono\", \"totalprice\": 500, \"depositpaid\": true, \"bookingdates\": {\"checkin\": \"2024-05-01\", \"checkout\": \"2024-05-10\"}}"},"url": {"raw": "{{baseUrl}}/booking","host": ["{{baseUrl}}"],"path": ["booking"]}}
+		},
+		{
+			"name": "04. Create Booking - Negativo (Bug 500)",
+			"event": [{"listen": "test","script": {"exec": ["pm.test(\"Status 500 por falta de nome\", () => pm.response.to.have.status(500));"],"type": "text/javascript"}}],
+			"request": {"method": "POST","header": [{"key": "Content-Type","value": "application/json"},{"key": "Accept","value": "application/json"}],"body": {"mode": "raw","raw": "{\"lastname\": \"SemNome\", \"totalprice\": 500, \"depositpaid\": true, \"bookingdates\": {\"checkin\": \"2024-05-01\", \"checkout\": \"2024-05-10\"}}"},"url": {"raw": "{{baseUrl}}/booking","host": ["{{baseUrl}}"],"path": ["booking"]}}
+		},
+		{
+			"name": "05. Get Filter: Checkin/Checkout",
+			"event": [{"listen": "test","script": {"exec": ["pm.test(\"Status 200\", () => pm.response.to.have.status(200));"],"type": "text/javascript"}}],
+			"request": {"method": "GET","url": {"raw": "{{baseUrl}}/booking?checkin=2024-05-01&checkout=2024-05-10","host": ["{{baseUrl}}"],"path": ["booking"]}}
+		},
+		{
+			"name": "06. Update Booking Completo (PUT)",
+			"event": [{"listen": "test","script": {"exec": ["pm.test(\"Status 200\", () => pm.response.to.have.status(200));"],"type": "text/javascript"}}],
+			"request": {"method": "PUT","header": [{"key": "Content-Type","value": "application/json"},{"key": "Accept","value": "application/json"},{"key": "Cookie","value": "token={{token}}"}],"body": {"mode": "raw","raw": "{\"firstname\": \"Julius\", \"lastname\": \"Novachrono\", \"totalprice\": 999, \"depositpaid\": false, \"bookingdates\": {\"checkin\": \"2024-05-01\", \"checkout\": \"2024-05-10\"}}"},"url": {"raw": "{{baseUrl}}/booking/{{bookingid}}","host": ["{{baseUrl}}"],"path": ["booking","{{bookingid}}"]}}
+		},
+		{
+			"name": "07. Update Parcial (PATCH)",
+			"event": [{"listen": "test","script": {"exec": ["pm.test(\"Status 200\", () => pm.response.to.have.status(200));"],"type": "text/javascript"}}],
+			"request": {"method": "PATCH","header": [{"key": "Content-Type","value": "application/json"},{"key": "Accept","value": "application/json"},{"key": "Cookie","value": "token={{token}}"}],"body": {"mode": "raw","raw": "{\"firstname\": \"Rei Mago\"}"},"url": {"raw": "{{baseUrl}}/booking/{{bookingid}}","host": ["{{baseUrl}}"],"path": ["booking","{{bookingid}}"]}}
+		},
+		{
+			"name": "08. Update Parcial S/ Token (PATCH 403)",
+			"event": [{"listen": "test","script": {"exec": ["pm.test(\"Status 403\", () => pm.response.to.have.status(403));"],"type": "text/javascript"}}],
+			"request": {"method": "PATCH","header": [{"key": "Content-Type","value": "application/json"},{"key": "Accept","value": "application/json"}],"body": {"mode": "raw","raw": "{\"firstname\": \"Hacker\"}"},"url": {"raw": "{{baseUrl}}/booking/{{bookingid}}","host": ["{{baseUrl}}"],"path": ["booking","{{bookingid}}"]}}
+		},
+		{
+			"name": "09. Get Booking Inexistente (404)",
+			"event": [{"listen": "test","script": {"exec": ["pm.test(\"Status 404\", () => pm.response.to.have.status(404));"],"type": "text/javascript"}}],
+			"request": {"method": "GET","url": {"raw": "{{baseUrl}}/booking/999999999","host": ["{{baseUrl}}"],"path": ["booking","999999999"]}}
+		},
+		{
+			"name": "10. Delete Booking",
+			"event": [{"listen": "test","script": {"exec": ["pm.test(\"Status 201 Created\", () => pm.response.to.have.status(201));"],"type": "text/javascript"}}],
+			"request": {"method": "DELETE","header": [{"key": "Cookie","value": "token={{token}}"}],"url": {"raw": "{{baseUrl}}/booking/{{bookingid}}","host": ["{{baseUrl}}"],"path": ["booking","{{bookingid}}"]}}
+		}
+	],
+	"variable": [{"key": "baseUrl", "value": "https://restful-booker.herokuapp.com"}]
+}
