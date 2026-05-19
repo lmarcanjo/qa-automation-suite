@@ -24,12 +24,11 @@ O projeto foi desenhado para ser rápido, escalável e gerar relatórios visuais
 ```text
 qa-automation-suite/
 ├── docs/                     # Cenários BDD (Gherkin) detalhados (Funcionais e Não-Funcionais)
-├── evidences/                # ⚠️ Ignorado no Git. Aqui são salvos os relatórios HTML e Vídeos localmente
+├── evidences/                # Contém as evidências dos testes realizados;
 ├── tests/
 │   ├── api/                  # Collections e Environments do Postman
 │   ├── performance/          # Scripts do K6 (Load, Stress e Spike tests)
 │   └── ui/                   # Scripts E2E com Playwright
-│       ├── pages/            # Page Object Model (POM)
 │       └── e2e/              # Arquivos de teste (.spec.ts)
 ├── .github/workflows/        # Pipeline do GitHub Actions
 ├── playwright.config.ts      # Configuração global do Playwright
@@ -67,7 +66,7 @@ Certifique-se de ter instalado em sua máquina:
 Clone o projeto e instale as dependências:
 
 ```bash
-git clone https://github.com/SEU-USUARIO/qa-automation-suite.git
+git clone https://github.com/lmarcanjo/qa-automation-suite
 cd qa-automation-suite
 npm install
 npx playwright install --with-deps
@@ -100,7 +99,7 @@ npx playwright test --ui     # Abre a interface interativa do Playwright
 **K6 (Performance):**
 ```bash
 # Roda o teste de carga e gera um dashboard HTML na pasta evidences
-K6_WEB_DASHBOARD=true K6_WEB_DASHBOARD_EXPORT=evidences/k6-report.html k6 run tests/performance/seu_script_k6.js
+K6_WEB_DASHBOARD=true K6_WEB_DASHBOARD_EXPORT=evidences/k6-report.html k6 run tests/performance/load_test.js
 ```
 
 ---

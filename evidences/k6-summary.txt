@@ -1,0 +1,224 @@
+
+         /\      Grafana   /‾‾/  
+    /\  /  \     |\  __   /  /   
+   /  \/    \    | |/ /  /   ‾‾\ 
+  /          \   |   (  |  (‾)  |
+ / __________ \  |_|\_\  \_____/ 
+
+
+     execution: local
+        script: tests/performance/load_test.js
+        output: -
+
+     scenarios: (100.00%) 2 scenarios, 25 max VUs, 1m10s max duration (incl. graceful stop):
+              * read_load: Up to 20 looping VUs for 40s over 3 stages (gracefulRampDown: 30s, exec: testGet, gracefulStop: 30s)
+              * write_stress: 5 looping VUs for 40s (exec: testPost, gracefulStop: 30s)
+
+
+running (0m01.0s), 06/25 VUs, 0 complete and 0 interrupted iterations
+read_load      [   2% ] 01/20 VUs  01.0s/40.0s
+write_stress   [   2% ] 5 VUs      01.0s/40s
+
+running (0m02.0s), 08/25 VUs, 5 complete and 0 interrupted iterations
+read_load      [   5% ] 03/20 VUs  02.0s/40.0s
+write_stress   [   5% ] 5 VUs      02.0s/40s
+
+running (0m03.0s), 10/25 VUs, 12 complete and 0 interrupted iterations
+read_load      [   7% ] 05/20 VUs  03.0s/40.0s
+write_stress   [   7% ] 5 VUs      03.0s/40s
+
+running (0m04.0s), 12/25 VUs, 16 complete and 0 interrupted iterations
+read_load      [  10% ] 07/20 VUs  04.0s/40.0s
+write_stress   [  10% ] 5 VUs      04.0s/40s
+
+running (0m05.0s), 14/25 VUs, 25 complete and 0 interrupted iterations
+read_load      [  12% ] 09/20 VUs  05.0s/40.0s
+write_stress   [  12% ] 5 VUs      05.0s/40s
+
+running (0m06.0s), 16/25 VUs, 38 complete and 0 interrupted iterations
+read_load      [  15% ] 11/20 VUs  06.0s/40.0s
+write_stress   [  15% ] 5 VUs      06.0s/40s
+
+running (0m07.0s), 18/25 VUs, 50 complete and 0 interrupted iterations
+read_load      [  17% ] 13/20 VUs  07.0s/40.0s
+write_stress   [  17% ] 5 VUs      07.0s/40s
+
+running (0m08.0s), 20/25 VUs, 62 complete and 0 interrupted iterations
+read_load      [  20% ] 15/20 VUs  08.0s/40.0s
+write_stress   [  20% ] 5 VUs      08.0s/40s
+
+running (0m09.0s), 22/25 VUs, 78 complete and 0 interrupted iterations
+read_load      [  22% ] 17/20 VUs  09.0s/40.0s
+write_stress   [  22% ] 5 VUs      09.0s/40s
+
+running (0m10.0s), 24/25 VUs, 90 complete and 0 interrupted iterations
+read_load      [  25% ] 19/20 VUs  10.0s/40.0s
+write_stress   [  25% ] 5 VUs      10.0s/40s
+
+running (0m11.0s), 25/25 VUs, 106 complete and 0 interrupted iterations
+read_load      [  27% ] 20/20 VUs  11.0s/40.0s
+write_stress   [  27% ] 5 VUs      11.0s/40s
+
+running (0m12.0s), 25/25 VUs, 125 complete and 0 interrupted iterations
+read_load      [  30% ] 20/20 VUs  12.0s/40.0s
+write_stress   [  30% ] 5 VUs      12.0s/40s
+
+running (0m13.0s), 25/25 VUs, 140 complete and 0 interrupted iterations
+read_load      [  32% ] 20/20 VUs  13.0s/40.0s
+write_stress   [  32% ] 5 VUs      13.0s/40s
+
+running (0m14.0s), 25/25 VUs, 163 complete and 0 interrupted iterations
+read_load      [  35% ] 20/20 VUs  14.0s/40.0s
+write_stress   [  35% ] 5 VUs      14.0s/40s
+
+running (0m15.0s), 25/25 VUs, 174 complete and 0 interrupted iterations
+read_load      [  37% ] 20/20 VUs  15.0s/40.0s
+write_stress   [  37% ] 5 VUs      15.0s/40s
+
+running (0m16.0s), 25/25 VUs, 193 complete and 0 interrupted iterations
+read_load      [  40% ] 20/20 VUs  16.0s/40.0s
+write_stress   [  40% ] 5 VUs      16.0s/40s
+
+running (0m17.0s), 25/25 VUs, 211 complete and 0 interrupted iterations
+read_load      [  42% ] 20/20 VUs  17.0s/40.0s
+write_stress   [  42% ] 5 VUs      17.0s/40s
+
+running (0m18.0s), 25/25 VUs, 231 complete and 0 interrupted iterations
+read_load      [  45% ] 20/20 VUs  18.0s/40.0s
+write_stress   [  45% ] 5 VUs      18.0s/40s
+
+running (0m19.0s), 25/25 VUs, 244 complete and 0 interrupted iterations
+read_load      [  47% ] 20/20 VUs  19.0s/40.0s
+write_stress   [  47% ] 5 VUs      19.0s/40s
+
+running (0m20.0s), 25/25 VUs, 262 complete and 0 interrupted iterations
+read_load      [  50% ] 20/20 VUs  20.0s/40.0s
+write_stress   [  50% ] 5 VUs      20.0s/40s
+
+running (0m21.0s), 25/25 VUs, 281 complete and 0 interrupted iterations
+read_load      [  52% ] 20/20 VUs  21.0s/40.0s
+write_stress   [  52% ] 5 VUs      21.0s/40s
+
+running (0m22.0s), 25/25 VUs, 299 complete and 0 interrupted iterations
+read_load      [  55% ] 20/20 VUs  22.0s/40.0s
+write_stress   [  55% ] 5 VUs      22.0s/40s
+
+running (0m23.0s), 25/25 VUs, 308 complete and 0 interrupted iterations
+read_load      [  57% ] 20/20 VUs  23.0s/40.0s
+write_stress   [  57% ] 5 VUs      23.0s/40s
+
+running (0m24.0s), 25/25 VUs, 327 complete and 0 interrupted iterations
+read_load      [  60% ] 20/20 VUs  24.0s/40.0s
+write_stress   [  60% ] 5 VUs      24.0s/40s
+
+running (0m25.0s), 25/25 VUs, 346 complete and 0 interrupted iterations
+read_load      [  62% ] 20/20 VUs  25.0s/40.0s
+write_stress   [  62% ] 5 VUs      25.0s/40s
+
+running (0m26.0s), 25/25 VUs, 362 complete and 0 interrupted iterations
+read_load      [  65% ] 20/20 VUs  26.0s/40.0s
+write_stress   [  65% ] 5 VUs      26.0s/40s
+
+running (0m27.0s), 25/25 VUs, 379 complete and 0 interrupted iterations
+read_load      [  67% ] 20/20 VUs  27.0s/40.0s
+write_stress   [  67% ] 5 VUs      27.0s/40s
+
+running (0m28.0s), 25/25 VUs, 392 complete and 0 interrupted iterations
+read_load      [  70% ] 20/20 VUs  28.0s/40.0s
+write_stress   [  70% ] 5 VUs      28.0s/40s
+
+running (0m29.0s), 25/25 VUs, 416 complete and 0 interrupted iterations
+read_load      [  72% ] 20/20 VUs  29.0s/40.0s
+write_stress   [  72% ] 5 VUs      29.0s/40s
+
+running (0m30.0s), 25/25 VUs, 423 complete and 0 interrupted iterations
+read_load      [  75% ] 20/20 VUs  30.0s/40.0s
+write_stress   [  75% ] 5 VUs      30.0s/40s
+
+running (0m31.0s), 25/25 VUs, 444 complete and 0 interrupted iterations
+read_load      [  77% ] 20/20 VUs  31.0s/40.0s
+write_stress   [  77% ] 5 VUs      31.0s/40s
+
+running (0m32.0s), 23/25 VUs, 458 complete and 0 interrupted iterations
+read_load      [  80% ] 18/20 VUs  32.0s/40.0s
+write_stress   [  80% ] 5 VUs      32.0s/40s
+
+running (0m33.0s), 21/25 VUs, 478 complete and 0 interrupted iterations
+read_load      [  82% ] 16/20 VUs  33.0s/40.0s
+write_stress   [  82% ] 5 VUs      33.0s/40s
+
+running (0m34.0s), 20/25 VUs, 491 complete and 0 interrupted iterations
+read_load      [  85% ] 15/20 VUs  34.0s/40.0s
+write_stress   [  85% ] 5 VUs      34.0s/40s
+
+running (0m35.0s), 17/25 VUs, 503 complete and 0 interrupted iterations
+read_load      [  87% ] 12/20 VUs  35.0s/40.0s
+write_stress   [  87% ] 5 VUs      35.0s/40s
+
+running (0m36.0s), 15/25 VUs, 516 complete and 0 interrupted iterations
+read_load      [  90% ] 10/20 VUs  36.0s/40.0s
+write_stress   [  90% ] 5 VUs      36.0s/40s
+
+running (0m37.0s), 13/25 VUs, 521 complete and 0 interrupted iterations
+read_load      [  92% ] 08/20 VUs  37.0s/40.0s
+write_stress   [  92% ] 5 VUs      37.0s/40s
+
+running (0m38.0s), 10/25 VUs, 533 complete and 0 interrupted iterations
+read_load      [  95% ] 05/20 VUs  38.0s/40.0s
+write_stress   [  95% ] 5 VUs      38.0s/40s
+
+running (0m39.0s), 10/25 VUs, 539 complete and 0 interrupted iterations
+read_load      [  97% ] 05/20 VUs  39.0s/40.0s
+write_stress   [  97% ] 5 VUs      39.0s/40s
+
+running (0m40.0s), 07/25 VUs, 547 complete and 0 interrupted iterations
+read_load      [ 100% ] 02/20 VUs  40.0s/40.0s
+write_stress   [ 100% ] 5 VUs      40.0s/40s
+
+running (0m41.0s), 01/25 VUs, 553 complete and 0 interrupted iterations
+read_load    ↓ [ 100% ] 02/20 VUs  40s
+write_stress ✓ [ 100% ] 5 VUs      40s
+
+
+  █ THRESHOLDS 
+
+    http_req_duration{scenario:read_load}
+    ✓ 'p(95)<3000' p(95)=1.33s
+
+    http_req_failed{scenario:write_stress}
+    ✓ 'rate<0.1' rate=0.00%
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 554     13.349518/s
+    checks_succeeded...: 100.00% 554 out of 554
+    checks_failed......: 0.00%   0 out of 554
+
+    ✓ POST returns 200
+    ✓ GET returns 200
+
+    HTTP
+    http_req_duration..............: avg=452.37ms min=113.08ms med=313.67ms max=1.72s p(90)=1.18s p(95)=1.27s
+      { expected_response:true }...: avg=452.37ms min=113.08ms med=313.67ms max=1.72s p(90)=1.18s p(95)=1.27s
+      { scenario:read_load }.......: avg=573.68ms min=116.96ms med=387.7ms  max=1.72s p(90)=1.25s p(95)=1.33s
+    http_req_failed................: 0.00%  0 out of 554
+      { scenario:write_stress }....: 0.00%  0 out of 170
+    http_reqs......................: 554    13.349518/s
+
+    EXECUTION
+    iteration_duration.............: avg=1.47s    min=1.11s    med=1.33s    max=2.72s p(90)=2.18s p(95)=2.28s
+    iterations.....................: 554    13.349518/s
+    vus............................: 1      min=1        max=25
+    vus_max........................: 25     min=25       max=25
+
+    NETWORK
+    data_received..................: 6.4 MB 155 kB/s
+    data_sent......................: 155 kB 3.7 kB/s
+
+
+
+
+running (0m41.5s), 00/25 VUs, 554 complete and 0 interrupted iterations
+read_load    ✓ [ 100% ] 00/20 VUs  40s
+write_stress ✓ [ 100% ] 5 VUs      40s
